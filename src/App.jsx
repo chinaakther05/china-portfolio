@@ -11,14 +11,17 @@ import ScrollProvider from "./components/ScrollProvider";
 function App() {
   return (
     <div>
-      <Navbar />
+      <ScrollProvider>
+<Navbar />
       <Hero />
       <About />
       <Projects />
      
       <Contact />
       <Footer />
-      <ScrollProvider/>
+      </ScrollProvider>
+      
+      
     </div>
   );
 }

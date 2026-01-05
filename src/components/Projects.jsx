@@ -1,5 +1,5 @@
-// src/components/Projects.jsx
 import React from "react";
+import { motion } from "framer-motion";
 
 const Projects = () => {
   const projects = [
@@ -36,20 +36,31 @@ const Projects = () => {
     >
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Projects</h2>
           <div className="w-24 h-1 bg-cyan-400 mx-auto mb-4"></div>
           <p className="text-gray-300 max-w-2xl mx-auto">
             Here are some of my selected projects showcasing my skills in frontend and full-stack development.
           </p>
-        </div>
+        </motion.div>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((proj, index) => (
-            <div
+            <motion.div
               key={index}
               className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 p-5 flex flex-col"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
+              whileHover={{ scale: 1.03 }}
             >
               <img
                 src={proj.img}
@@ -86,7 +97,7 @@ const Projects = () => {
                   GitHub
                 </a>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

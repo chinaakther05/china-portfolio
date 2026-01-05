@@ -24,9 +24,8 @@ const Hero = () => {
           </p>
 
           <p className="text-gray-400 max-w-xl">
-            I love building modern web applications and solving challenging problems.
-            I enjoy exploring new technologies, designing clean UI/UX, and creating
-            fast, scalable digital solutions.
+          My expertise lies in the MERN stack, providing seamless end-to-end solutions, from MongoDB database management to building backend APIs with Express and Node.js.
+
           </p>
 
           <div className="flex gap-4 flex-wrap justify-center md:justify-start pt-4">

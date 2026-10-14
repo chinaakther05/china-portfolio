@@ -1,325 +1,704 @@
-// Navbar.jsx — Fully Enhanced & Requirement Compliant Version
+
 import React, { useState, useEffect } from "react";
+
+const links = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "skills", label: "Skills" },
+  { id: "education", label: "Education" },
+  { id: "projects", label: "Projects" },
+  { id: "contact", label: "Contact" },
+];
 
 const HireModal = ({ onClose }) => {
   useEffect(() => {
-    const onKey = (e) => { if (e.key === "Escape") onClose(); };
-    window.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden"; // ✅ scroll lock
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    document.body.style.overflow = "hidden";
+
     return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = ""; // ✅ restore
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
     };
   }, [onClose]);
 
   const actions = [
-    { icon: "📄", label: "Download Resume", sub: "PDF • Updated 2026", href: "Resume.pdf", download: true, color: "#f472b6" },
-    { icon: "📧", label: "Send an Email", sub: "chinaakther05@gmail.com", href: "mailto:chinaakther05@gmail.com", color: "#a78bfa" },
-    { icon: "💬", label: "WhatsApp Me", sub: "+880 1933067666", href: "https://wa.me/8801933067666", color: "#34d399" },
+    {
+      icon: "📄",
+      label: "Download Resume",
+      detail: "PDF Resume",
+      href: "/Resume.pdf",
+      download: true,
+      color: "#A78BFA",
+    },
+    {
+      icon: "✉",
+      label: "Send an Email",
+      detail: "chinaakther05@gmail.com",
+      href: "mailto:chinaakther05@gmail.com",
+      color: "#F472B6",
+    },
+    {
+      icon: "💬",
+      label: "WhatsApp Me",
+      detail: "Let's discuss an opportunity",
+      href: "https://wa.me/8801933067666",
+      color: "#34D399",
+    },
   ];
 
   return (
-    <>
-      <style>{`
-        @keyframes fadeIn  { from{opacity:0;} to{opacity:1;} }
-        @keyframes slideUp { from{opacity:0;transform:translateY(40px) scale(0.96);} to{opacity:1;transform:translateY(0) scale(1);} }
-        @keyframes rgb-shift { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
-        @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
-        @keyframes shimmer { 0%{transform:translateX(-120%);} 100%{transform:translateX(120%);} }
-        .hire-action-card { display:flex;align-items:center;gap:16px;padding:13px 16px;border-radius:14px;margin-bottom:10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);text-decoration:none;transition:all .25s; }
-        .hire-action-card:hover { transform:translateX(4px); }
-        .hire-action-card .arrow { margin-left:auto;color:rgba(255,255,255,0.25);font-size:14px;transition:all .2s; }
-        .hire-action-card:hover .arrow { color:#a78bfa;transform:translateX(4px); }
-        .modal-close:hover { background:rgba(244,114,182,0.15)!important;border-color:rgba(244,114,182,0.3)!important;color:#f472b6!important; }
-        @media (max-width: 480px) {
-          .hire-modal-card { max-width: 92vw !important; }
-        }
-      `}</style>
+    <div
+      className="hire-overlay"
+      onClick={onClose}
+      role="presentation"
+    >
+      <div
+        className="hire-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="hire-title"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button
+          className="modal-close"
+          onClick={onClose}
+          aria-label="Close dialog"
+        >
+          ✕
+        </button>
 
-      <div onClick={onClose} style={{
-        position:"fixed",inset:0,zIndex:9999,
-        background:"rgba(0,0,0,0.82)",backdropFilter:"blur(12px)",
-        display:"flex",alignItems:"center",justifyContent:"center",
-        padding:20, animation:"fadeIn .25s ease",
-      }}>
-        <div onClick={(e) => e.stopPropagation()} className="hire-modal-card" style={{
-          background:"linear-gradient(145deg,#0d0e1a,#10111f)",
-          border:"1px solid rgba(167,139,250,0.25)",
-          borderRadius:24,width:"100%",maxWidth:460,
-          position:"relative",overflow:"hidden",
-          animation:"slideUp .35s cubic-bezier(0.22,1,0.36,1)",
-          boxShadow:"0 40px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(167,139,250,0.1), inset 0 1px 0 rgba(255,255,255,0.05)",
-        }}>
-          {/* Rainbow top bar */}
-          <div style={{ height:3,background:"linear-gradient(90deg,#f472b6,#a78bfa,#60a5fa,#34d399)",backgroundSize:"200% auto",animation:"rgb-shift 3s linear infinite",position:"relative",overflow:"hidden" }}>
-            <div style={{ position:"absolute",inset:0,background:"linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)",animation:"shimmer 2s ease-in-out infinite" }} />
-          </div>
+        <div className="modal-icon">👩‍💻</div>
 
-          <div style={{ padding:"32px 32px 28px" }}>
-            <button className="modal-close" onClick={onClose} style={{
-              position:"absolute",top:18,right:18,
-              background:"rgba(255,255,255,0.06)",border:"1px solid rgba(255,255,255,0.1)",
-              color:"rgba(255,255,255,0.5)",width:32,height:32,borderRadius:"50%",
-              display:"flex",alignItems:"center",justifyContent:"center",
-              cursor:"pointer",fontSize:14,transition:"all .2s",
-            }}>✕</button>
+        <p className="modal-eyebrow">LET'S WORK TOGETHER</p>
 
-            <div style={{ width:56,height:56,borderRadius:14,marginBottom:18,background:"linear-gradient(135deg,rgba(244,114,182,0.2),rgba(167,139,250,0.25))",border:"1px solid rgba(167,139,250,0.35)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:24,boxShadow:"0 0 28px rgba(167,139,250,0.2)" }}>
-              👩‍💻
-            </div>
+        <h2 id="hire-title">
+          Hire <span>China Akther</span>
+        </h2>
 
-            <div style={{ fontFamily:"'DM Mono',monospace",fontSize:10,fontWeight:500,color:"#a78bfa",letterSpacing:".12em",textTransform:"uppercase",marginBottom:8 }}>
-              ✦ Let's work together
-            </div>
+        <p className="modal-description">
+          Full-Stack Developer open to suitable job
+          opportunities and professional collaborations.
+        </p>
 
-            <h2 style={{ fontSize:24,fontWeight:800,color:"#fff",margin:"0 0 6px",letterSpacing:"-.02em" }}>
-              Hire{" "}
-              <span style={{ background:"linear-gradient(90deg,#f472b6,#a78bfa,#60a5fa)",backgroundSize:"200% auto",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text",animation:"rgb-shift 4s linear infinite" }}>
-                China Akther
+        <div className="hire-actions">
+          {actions.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              download={item.download || undefined}
+              target={item.download ? undefined : "_blank"}
+              rel="noopener noreferrer"
+              className="hire-action"
+              style={{ "--action-color": item.color }}
+            >
+              <span className="action-icon">{item.icon}</span>
+
+              <span className="action-text">
+                <strong>{item.label}</strong>
+                <small>{item.detail}</small>
               </span>
-            </h2>
 
-            <p style={{ fontSize:13,color:"rgba(255,255,255,0.4)",lineHeight:1.65,margin:"8px 0 24px",fontWeight:300 }}>
-              Full Stack Developer — available for freelance projects, full-time roles, and exciting collaborations.
-            </p>
-
-            {actions.map((item, i) => (
-              <a key={i} href={item.href} target={item.download ? undefined : "_blank"} rel="noopener noreferrer" download={item.download || undefined} className="hire-action-card"
-                onMouseEnter={(e) => { e.currentTarget.style.background=`${item.color}10`; e.currentTarget.style.borderColor=`${item.color}40`; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background="rgba(255,255,255,0.03)"; e.currentTarget.style.borderColor="rgba(255,255,255,0.08)"; }}
-              >
-                <div style={{ width:42,height:42,borderRadius:12,flexShrink:0,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,background:`${item.color}15`,border:`1px solid ${item.color}30` }}>
-                  {item.icon}
-                </div>
-                <div>
-                  <div style={{ fontSize:13,fontWeight:700,color:"#fff",marginBottom:3 }}>{item.label}</div>
-                  <div style={{ fontSize:11,color:"rgba(255,255,255,0.35)",fontFamily:"'DM Mono',monospace" }}>{item.sub}</div>
-                </div>
-                <span className="arrow">↗</span>
-              </a>
-            ))}
-
-            <div style={{ height:1,background:"linear-gradient(90deg,transparent,rgba(167,139,250,0.2),transparent)",margin:"18px 0 14px" }} />
-            <div style={{ display:"flex",alignItems:"center",justifyContent:"center",gap:8,fontSize:11,color:"rgba(255,255,255,0.25)",fontFamily:"'DM Mono',monospace" }}>
-              <span style={{ width:5,height:5,borderRadius:"50%",background:"#34d399",boxShadow:"0 0 6px #34d399",display:"inline-block",animation:"blink 1.4s infinite" }} />
-              Currently available for new projects
-            </div>
-          </div>
+              <span className="action-arrow">↗</span>
+            </a>
+          ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
-
 const Navbar = () => {
-  const [isOpen, setIsOpen]       = useState(false);
-  const [active, setActive]       = useState("home");
-  const [scrolled, setScrolled]   = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [active, setActive] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showModal, setShowModal] = useState(false);
-  const [hoveredLink, setHoveredLink] = useState(null);
 
   useEffect(() => {
-    // ✅ Scroll progress
     const onScroll = () => {
       setScrolled(window.scrollY > 20);
-      const total = document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress(total > 0 ? (window.scrollY / total) * 100 : 0);
-    };
-    window.addEventListener("scroll", onScroll);
 
-    // ✅ IntersectionObserver — auto active section detect (All Sections Added)
-    const sections = ["home", "about", "skills", "education", "projects", "contact"];
+      const total =
+        document.documentElement.scrollHeight -
+        window.innerHeight;
+
+      setScrollProgress(
+        total > 0 ? (window.scrollY / total) * 100 : 0
+      );
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, {
+      passive: true,
+    });
+
+    const sectionElements = links
+      .map(({ id }) => document.getElementById(id))
+      .filter(Boolean);
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(entry.target.id);
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
         });
       },
-      { threshold: 0.3, rootMargin: "-64px 0px 0px 0px" }
+      {
+        threshold: 0,
+        rootMargin: "-20% 0px -65% 0px",
+      }
     );
-    sections.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
 
-    return () => { window.removeEventListener("scroll", onScroll); observer.disconnect(); };
+    sectionElements.forEach((section) =>
+      observer.observe(section)
+    );
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      observer.disconnect();
+    };
   }, []);
 
-  // ✅ close mobile menu automatically if the viewport is resized back to desktop
   useEffect(() => {
-    const onResize = () => { if (window.innerWidth >= 1024) setIsOpen(false); };
+    const onResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsOpen(false);
+      }
+    };
+
     window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+    };
   }, []);
 
-  // ✅ Added 'skills' and 'education' to match all requirements
-  const links = [
-    { id: "home",      label: "Home"      },
-    { id: "about",     label: "About"     },
-    { id: "skills",    label: "Skills"    },
-    { id: "education", label: "Education" },
-    { id: "projects",  label: "Projects"  },
-    { id: "contact",   label: "Contact"   },
-  ];
+  const closeMenu = () => setIsOpen(false);
 
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Mono:wght@400;500;600&display=swap');
-        @keyframes rgb-shift { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
-        @keyframes blink     { 0%,100%{opacity:1;} 50%{opacity:0;} }
-        @keyframes shimmer   { 0%{transform:translateX(-120%);} 100%{transform:translateX(120%);} }
-        @keyframes fadeDown  { from{opacity:0;transform:translateY(-12px);} to{opacity:1;transform:translateY(0);} }
-        @keyframes navGlow   { 0%,100%{box-shadow:0 1px 24px rgba(244,114,182,0.07);} 50%{box-shadow:0 1px 32px rgba(167,139,250,0.13);} }
+        .portfolio-navbar,
+        .portfolio-navbar * {
+          box-sizing: border-box;
+        }
 
-        .nav-logo-sub { font-family:'DM Mono',monospace; font-size:9px; color:rgba(255,255,255,0.28); letter-spacing:3px; text-transform:uppercase; }
+        .portfolio-navbar {
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          background: rgba(7, 8, 15, 0.94);
+          border-bottom: 1px solid rgba(167, 139, 250, 0.12);
+          backdrop-filter: blur(18px);
+          -webkit-backdrop-filter: blur(18px);
+          font-family: 'Sora', sans-serif;
+          transition: background 0.25s, box-shadow 0.25s;
+        }
 
-        /* Desktop Nav Link Layout Styling */
-        .desktop-nav { display: none; align-items: center; gap: 2px; }
-        @media (min-width: 1024px) {
-          .desktop-nav { display: flex; }
+        .portfolio-navbar.is-scrolled {
+          background: rgba(7, 8, 15, 0.98);
+          box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+        }
+
+        .nav-inner {
+          max-width: 1200px;
+          height: 72px;
+          padding: 0 24px;
+          margin: auto;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 20px;
+        }
+
+        .nav-logo {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          flex-shrink: 0;
+          text-decoration: none;
+        }
+
+        .nav-logo-icon {
+          width: 38px;
+          height: 38px;
+          display: grid;
+          place-items: center;
+          border-radius: 12px;
+          color: #c4b5fd;
+          font-size: 20px;
+          background: rgba(167, 139, 250, 0.10);
+          border: 1px solid rgba(167, 139, 250, 0.25);
+        }
+
+        .nav-logo-name {
+          color: #fff;
+          font-size: 17px;
+          font-weight: 700;
+          letter-spacing: -0.5px;
+          white-space: nowrap;
+        }
+
+        .nav-logo-name span {
+          color: #c4b5fd;
+        }
+
+        .desktop-nav {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 4px;
         }
 
         .nav-link {
-          position:relative; text-decoration:none; padding:7px 12px; border-radius:10px;
-          font-family:'DM Mono',monospace; font-size:13px; font-weight:600;
-          letter-spacing:1px; text-transform:uppercase;
-          transition:color .25s, background .25s; overflow:hidden;
+          position: relative;
+          padding: 10px 11px;
+          color: #a1a1aa;
+          text-decoration: none;
+          font-size: 12px;
+          font-weight: 500;
+          border-radius: 8px;
+          transition: color 0.2s, background 0.2s;
         }
-        .nav-link::before {
-          content:''; position:absolute; inset:0; border-radius:10px;
-          background:linear-gradient(135deg,rgba(244,114,182,0.1),rgba(167,139,250,0.1));
-          opacity:0; transition:opacity .25s;
+
+        .nav-link:hover,
+        .nav-link.active {
+          color: #c4b5fd;
+          background: rgba(167, 139, 250, 0.07);
         }
-        .nav-link:hover::before { opacity:1; }
-        .nav-link .bar {
-          position:absolute; bottom:4px; left:50%; transform:translateX(-50%);
-          width:0; height:2px; border-radius:2px;
-          background:linear-gradient(90deg,#f472b6,#a78bfa);
-          transition:width .3s cubic-bezier(0.22,1,0.36,1);
+
+        .nav-link.active::after {
+          content: "";
+          position: absolute;
+          bottom: 3px;
+          left: 50%;
+          width: 14px;
+          height: 2px;
+          border-radius: 10px;
+          background: #a78bfa;
+          transform: translateX(-50%);
         }
-        .nav-link.active .bar, .nav-link:hover .bar { width:16px; }
+
+        .nav-right {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .open-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 7px;
+          color: #6ee7b7;
+          font-size: 10px;
+          font-weight: 600;
+          white-space: nowrap;
+        }
+
+        .open-dot {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background: #34d399;
+        }
 
         .hire-btn {
-          border:none; font-family:'Sora',sans-serif; font-size:11px; font-weight:700;
-          letter-spacing:1.5px; text-transform:uppercase;
-          padding:9px 22px; border-radius:100px; color:#07080f; cursor:pointer;
-          position:relative; overflow:hidden; transition:transform .2s, box-shadow .2s;
-          box-shadow:0 4px 20px rgba(167,139,250,0.35);
-        }
-        .hire-btn::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,#f472b6,#a78bfa,#60a5fa); background-size:200% auto; animation:rgb-shift 3s linear infinite; }
-        .hire-btn::after  { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent); animation:shimmer 2.5s ease-in-out infinite; }
-        .hire-btn span { position:relative; z-index:1; display:flex; align-items:center; gap:6px; color:#07080f; }
-        .hire-btn:hover { transform:translateY(-2px) scale(1.04); box-shadow:0 8px 28px rgba(167,139,250,0.6); }
-
-        .mobile-link { display:block; text-decoration:none; font-family:'DM Mono',monospace; font-size:11px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; padding:13px 16px; border-radius:12px; transition:all .2s; border:1px solid transparent; }
-        .mobile-link:hover { background:rgba(167,139,250,0.08); border-color:rgba(167,139,250,0.2); color:#a78bfa !important; }
-
-        /* Responsive Hamburger Controls */
-        .hamburger { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.7); width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:17px; transition:all .2s; flex-shrink:0; }
-        .hamburger:hover { background:rgba(167,139,250,0.1); border-color:rgba(167,139,250,0.3); color:#a78bfa; }
-        @media (min-width: 1024px) {
-          .hamburger { display: none !important; }
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          padding: 11px 18px;
+          border: 1px solid rgba(167, 139, 250, 0.4);
+          border-radius: 10px;
+          background: #a78bfa;
+          color: #100c1d;
+          font: inherit;
+          font-size: 12px;
+          font-weight: 700;
+          cursor: pointer;
+          transition: background 0.2s, transform 0.2s;
         }
 
-        /* ---------- Narrow-mobile overflow protection ---------- */
-        .nav-right { display:flex; align-items:center; gap:10px; }
-        @media (max-width: 480px) {
-          .badge-open-to-work { display: none; }
-          .hire-btn { padding: 8px 14px; font-size: 10px; letter-spacing: 1px; }
+        .hire-btn:hover {
+          background: #c4b5fd;
+          transform: translateY(-1px);
         }
-        @media (max-width: 360px) {
-          .hire-btn span span.hire-label { display: none; } /* keep icon only on very small screens */
+
+        .menu-toggle {
+          display: none;
+          width: 40px;
+          height: 40px;
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          border-radius: 10px;
+          background: rgba(255, 255, 255, 0.04);
+          color: #fff;
+          font-size: 20px;
+          cursor: pointer;
+        }
+
+        .mobile-menu {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          padding: 12px 20px 22px;
+          border-top: 1px solid rgba(167, 139, 250, 0.12);
+          background: #090a13;
+        }
+
+        .mobile-link {
+          display: block;
+          padding: 13px 14px;
+          border-radius: 9px;
+          color: #a1a1aa;
+          text-decoration: none;
+          font-size: 13px;
+          transition: background 0.2s, color 0.2s;
+        }
+
+        .mobile-link:hover,
+        .mobile-link.active {
+          color: #c4b5fd;
+          background: rgba(167, 139, 250, 0.09);
+        }
+
+        .mobile-hire {
+          margin-top: 8px;
+          padding: 13px;
+          border: 0;
+          border-radius: 9px;
+          background: #a78bfa;
+          color: #100c1d;
+          font: inherit;
+          font-size: 13px;
+          font-weight: 700;
+          cursor: pointer;
+        }
+
+        .scroll-progress {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          height: 2px;
+          background: linear-gradient(
+            90deg, #f472b6, #a78bfa
+          );
+          transition: width 0.1s linear;
+        }
+
+        .hire-overlay {
+          position: fixed;
+          inset: 0;
+          z-index: 9999;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 20px;
+          background: rgba(0, 0, 0, 0.78);
+          backdrop-filter: blur(8px);
+        }
+
+        .hire-modal {
+          position: relative;
+          width: 100%;
+          max-width: 440px;
+          padding: 34px;
+          border: 1px solid rgba(167, 139, 250, 0.24);
+          border-radius: 22px;
+          background: #10111f;
+          color: #fff;
+          box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+          animation: modal-enter 0.22s ease-out;
+        }
+
+        @keyframes modal-enter {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .modal-close {
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          width: 34px;
+          height: 34px;
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.04);
+          color: #d4d4d8;
+          cursor: pointer;
+        }
+
+        .modal-icon {
+          display: grid;
+          place-items: center;
+          width: 54px;
+          height: 54px;
+          margin-bottom: 20px;
+          border: 1px solid rgba(167, 139, 250, 0.3);
+          border-radius: 15px;
+          background: rgba(167, 139, 250, 0.10);
+          font-size: 25px;
+        }
+
+        .modal-eyebrow {
+          margin: 0 0 10px;
+          color: #c4b5fd;
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 2px;
+        }
+
+        .hire-modal h2 {
+          margin: 0;
+          font-size: 25px;
+          line-height: 1.4;
+        }
+
+        .hire-modal h2 span {
+          color: #c4b5fd;
+        }
+
+        .modal-description {
+          margin: 12px 0 24px;
+          color: #a1a1aa;
+          font-size: 13px;
+          line-height: 1.8;
+        }
+
+        .hire-actions {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .hire-action {
+          display: flex;
+          align-items: center;
+          gap: 13px;
+          padding: 13px;
+          border: 1px solid rgba(255, 255, 255, 0.09);
+          border-radius: 12px;
+          color: #fff;
+          text-decoration: none;
+          transition: background 0.2s, border-color 0.2s;
+        }
+
+        .hire-action:hover {
+          background: rgba(167, 139, 250, 0.07);
+          border-color: var(--action-color);
+        }
+
+        .action-icon {
+          display: grid;
+          place-items: center;
+          width: 42px;
+          height: 42px;
+          flex-shrink: 0;
+          border-radius: 11px;
+          background: rgba(167, 139, 250, 0.10);
+          font-size: 19px;
+        }
+
+        .action-text {
+          display: flex;
+          flex: 1;
+          min-width: 0;
+          flex-direction: column;
+          gap: 5px;
+        }
+
+        .action-text strong {
+          font-size: 12px;
+        }
+
+        .action-text small {
+          overflow-wrap: anywhere;
+          color: #a1a1aa;
+          font-size: 10px;
+        }
+
+        .action-arrow {
+          color: #a1a1aa;
+        }
+
+        @media (max-width: 1100px) {
+          .nav-inner {
+            padding: 0 18px;
+            gap: 12px;
+          }
+
+          .nav-link {
+            padding: 10px 8px;
+            font-size: 11px;
+          }
+
+          .open-badge {
+            display: none;
+          }
+        }
+
+        @media (max-width: 900px) {
+          .desktop-nav {
+            display: none;
+          }
+
+          .menu-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .nav-inner {
+            height: 68px;
+          }
+        }
+
+        @media (max-width: 420px) {
+          .nav-inner {
+            padding: 0 14px;
+          }
+
+          .nav-logo-name {
+            font-size: 15px;
+          }
+
+          .hire-btn {
+            padding: 10px 12px;
+            font-size: 11px;
+          }
+
+          .hire-modal {
+            padding: 28px 20px 22px;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .portfolio-navbar *,
+          .hire-overlay *,
+          .hire-overlay {
+            animation: none !important;
+            transition: none !important;
+          }
         }
       `}</style>
 
-      <header style={{
-        position:"sticky", top:0, zIndex:100,
-        background: scrolled ? "rgba(7,8,15,0.98)" : "rgba(7,8,15,0.92)",
-        backdropFilter:"blur(28px)", WebkitBackdropFilter:"blur(28px)",
-        borderBottom:`1px solid ${scrolled ? "rgba(167,139,250,0.18)" : "rgba(167,139,250,0.08)"}`,
-        boxShadow: scrolled ? "0 8px 40px rgba(0,0,0,0.5)" : "none",
-        fontFamily:"'Sora', sans-serif",
-        transition:"all 0.4s ease",
-        animation:"navGlow 6s ease-in-out infinite",
-      }}>
-        <div style={{ maxWidth:1200,margin:"0 auto",display:"flex",justifyContent:"space-between",alignItems:"center",padding:"0 20px",height:66,gap:12 }}>
-
-          {/* Logo */}
-          <a href="#home" onClick={() => { setActive("home"); setIsOpen(false); }} style={{ display:"flex",alignItems:"center",gap:11,textDecoration:"none",flexShrink:0 }}>
-            <div style={{ width:36,height:36,borderRadius:11,background:"linear-gradient(135deg,rgba(244,114,182,0.18),rgba(167,139,250,0.22))",border:"1px solid rgba(167,139,250,0.35)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:15,color:"#a78bfa",boxShadow:"0 0 20px rgba(167,139,250,0.2),inset 0 1px 0 rgba(255,255,255,0.1)" }}>
-              ✦
-            </div>
-            <div>
-              <span style={{ fontSize:18,fontWeight:800,letterSpacing:4,textTransform:"uppercase",background:"linear-gradient(90deg,#f472b6,#a78bfa,#60a5fa,#34d399)",backgroundSize:"300% auto",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text",animation:"rgb-shift 4s linear infinite" }}>
-                China
-              </span>
-            </div>
+      <header
+        className={`portfolio-navbar ${
+          scrolled ? "is-scrolled" : ""
+        }`}
+      >
+        <div className="nav-inner">
+          <a
+            href="#home"
+            className="nav-logo"
+            onClick={() => {
+              setActive("home");
+              closeMenu();
+            }}
+          >
+            <span className="nav-logo-icon">✦</span>
+            <span className="nav-logo-name">
+              China <span>Akther</span>
+            </span>
           </a>
 
-          {/* Desktop Nav — CSS class driven for clean responsiveness */}
-          <nav className="desktop-nav">
-            {links.map(link => (
-              <a key={link.id} href={`#${link.id}`}
+          <nav className="desktop-nav" aria-label="Main navigation">
+            {links.map((link) => (
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                className={`nav-link ${
+                  active === link.id ? "active" : ""
+                }`}
+                aria-current={
+                  active === link.id ? "location" : undefined
+                }
                 onClick={() => setActive(link.id)}
-                onMouseEnter={() => setHoveredLink(link.id)}
-                onMouseLeave={() => setHoveredLink(null)}
-                className={`nav-link ${active === link.id ? "active" : ""}`}
-                style={{ color: active === link.id ? "#a78bfa" : hoveredLink === link.id ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.42)" }}
               >
                 {link.label}
-                <span className="bar" />
               </a>
             ))}
           </nav>
 
-          {/* Right side */}
           <div className="nav-right">
-            <div className="badge-open-to-work" style={{ display:"inline-flex",alignItems:"center",gap:7,background:"rgba(52,211,153,0.07)",border:"1px solid rgba(52,211,153,0.18)",borderRadius:100,padding:"5px 13px",fontFamily:"'DM Mono',monospace",fontSize:10,fontWeight:500,color:"rgba(52,211,153,0.75)",letterSpacing:".07em",textTransform:"uppercase",whiteSpace:"nowrap" }}>
-              <span style={{ width:6,height:6,borderRadius:"50%",background:"#34d399",boxShadow:"0 0 7px #34d399",display:"inline-block",animation:"blink 1.4s ease-in-out infinite" }} />
-              Open to work
-            </div>
+            <span className="open-badge">
+              <span className="open-dot" />
+              Open to Work
+            </span>
 
-            <button className="hire-btn" onClick={() => setShowModal(true)}>
-              <span>
-                <span className="hire-label">Hire Me</span>
-                <svg width={11} height={11} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </span>
+            <button
+              className="hire-btn"
+              onClick={() => setShowModal(true)}
+            >
+              Hire Me <span>↗</span>
             </button>
 
-            {/* Hamburger — Managed responsive visibility via custom media queries in style tag */}
-            <button className="hamburger" aria-label={isOpen ? "Close menu" : "Open menu"} aria-expanded={isOpen} onClick={() => setIsOpen(!isOpen)}>
+            <button
+              className="menu-toggle"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
+              onClick={() => setIsOpen((previous) => !previous)}
+            >
               {isOpen ? "✕" : "☰"}
             </button>
           </div>
         </div>
 
-        {/* Scroll Progress */}
-        <div style={{ position:"absolute",bottom:0,left:0,height:2,borderRadius:2,background:"linear-gradient(90deg,#f472b6,#a78bfa,#60a5fa,#34d399)",backgroundSize:"200% auto",animation:"rgb-shift 3s linear infinite",width:`${scrollProgress}%`,transition:"width .1s linear" }} />
+        <div
+          className="scroll-progress"
+          style={{ width: `${scrollProgress}%` }}
+        />
 
-        {/* Mobile Menu */}
         {isOpen && (
-          <div style={{ background:"rgba(7,8,15,0.98)",borderTop:"1px solid rgba(167,139,250,0.12)",padding:"20px 28px 28px",display:"flex",flexDirection:"column",gap:4,animation:"fadeDown .25s ease" }}>
-            {links.map(link => (
-              <a key={link.id} href={`#${link.id}`} className="mobile-link"
-                onClick={() => { setActive(link.id); setIsOpen(false); }}
-                style={{ color: active === link.id ? "#a78bfa" : "rgba(255,255,255,0.45)", background: active === link.id ? "rgba(167,139,250,0.07)" : "transparent" }}>
-                {active === link.id ? "✦ " : ""}{link.label}
+          <nav
+            id="mobile-navigation"
+            className="mobile-menu"
+            aria-label="Mobile navigation"
+          >
+            {links.map((link) => (
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                className={`mobile-link ${
+                  active === link.id ? "active" : ""
+                }`}
+                onClick={() => {
+                  setActive(link.id);
+                  closeMenu();
+                }}
+              >
+                {link.label}
               </a>
             ))}
-            <button onClick={() => { setShowModal(true); setIsOpen(false); }}
-              style={{ marginTop:12,padding:"11px 0",borderRadius:100,border:"none",background:"linear-gradient(135deg,#f472b6,#a78bfa,#60a5fa)",color:"#fff",fontFamily:"'Sora',sans-serif",fontSize:11,fontWeight:700,letterSpacing:"1.5px",textTransform:"uppercase",cursor:"pointer" }}>
+
+            <button
+              className="mobile-hire"
+              onClick={() => {
+                closeMenu();
+                setShowModal(true);
+              }}
+            >
               Hire Me ↗
             </button>
-          </div>
+          </nav>
         )}
       </header>
 
-      {showModal && <HireModal onClose={() => setShowModal(false)} />}
+      {showModal && (
+        <HireModal onClose={() => setShowModal(false)} />
+      )}
     </>
   );
 };

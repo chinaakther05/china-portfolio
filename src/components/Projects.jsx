@@ -3,9 +3,64 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 export const projects = [
-  { slug: "dashchat", number: "04", title: "DashChat", desc: "Real-time full-stack chat app with JWT auth, Socket.IO messaging, video calling via Stream SDK and Google OAuth.", img: "https://i.ibb.co.com/bp1P2bK/Screenshot-61.png", tech: ["React 19", "Socket.io", "Node.js", "MongoDB", "Stream SDK"], live: "https://dash-chat-frontend.onrender.com/", github: "https://github.com/chinaakther05", accent: "#a78bfa", fullDescription: "DashChat is a real-time full-stack chat application featuring JWT-based authentication, Google OAuth login, live messaging over Socket.IO, and video calling powered by the Stream SDK. The backend handles auth, message persistence, and socket rooms; the frontend is built with React 19.", challenges: "Synchronizing real-time message delivery with reliable persistence (so no messages are lost on reconnect), and wiring up video calling alongside the existing socket-based chat without state conflicts, were the biggest engineering challenges.", improvements: "Future plans include group chat rooms, message read-receipts, end-to-end encryption for DMs, and push notifications for offline users." },
-  { slug: "ecommerce", number: "02", title: "E-Commerce", desc: "Full-stack e-commerce platform with dynamic product listing, cart, and secure checkout flow.", img: "https://i.ibb.co/wZmYtRr6/b3657f77-c42c-4f92-bed0-ebe14d1b4735.jpg", tech: ["React", "Node.js", "MongoDB"], live: "https://astonishing-parfait-83d6d0.netlify.app/", github: "https://github.com/chinaakther05", accent: "#60a5fa", fullDescription: "A full-stack e-commerce platform with dynamic product listings, category filtering, a persistent cart, and a checkout flow. The backend is built with Node.js and MongoDB, exposing a REST API consumed by a React frontend.", challenges: "Keeping cart state in sync across page reloads and multiple tabs, and structuring the MongoDB schema so product variants (size/color/stock) stayed easy to query, were the trickiest parts of this build.", improvements: "Next steps are adding real payment gateway integration, an admin dashboard for inventory management, and order-tracking with email notifications." },
-  { slug: "smart-home", number: "03", title: "Smart Home", desc: "Modern smart home dashboard with responsive design, built using Next.js and Tailwind CSS.", img: "https://i.ibb.co/yBWMJCPV/91266ec3-3e8c-4b6e-b752-b90d4d0b6c87.jpg", tech: ["Next.js", "Tailwind CSS"], live: "https://smart-home-37fee.web.app/", github: "https://github.com/chinaakther05", accent: "#34d399", fullDescription: "A smart-home control dashboard concept UI, built with Next.js and styled entirely with Tailwind CSS. It presents device states (lights, temperature, security) in a clean, responsive card-based layout.", challenges: "Designing a dashboard that stays readable and usable on small screens — while still showing several live-looking device widgets at once — required careful use of Tailwind's responsive grid utilities.", improvements: "Planning to connect it to a real device API (or a mock WebSocket server) for live state updates, add user authentication, and support custom device grouping/rooms." },
+
+ {
+  slug: "dashchat",
+  number: "04",
+  title: "DashChat",
+  desc: "A collaborative full-stack chat application featuring real-time messaging, JWT authentication, Google OAuth, and video calling.",
+  img: "https://i.ibb.co.com/bp1P2bK/Screenshot-61.png",
+  tech: ["React 19", "Socket.IO", "Node.js", "MongoDB", "Stream SDK"],
+  live: "https://dash-chat-frontend.onrender.com/",
+  github: "https://github.com/somrat350/Dash-Chat",
+  accent: "#a78bfa",
+  fullDescription: "DashChat is a collaborative full-stack chat application developed as a group project. It features JWT-based authentication, Google OAuth login, real-time messaging using Socket.IO, and video calling powered by the Stream SDK. The application combines a React frontend with a Node.js backend and MongoDB for data storage.",
+  challenges: "Working on a collaborative project involved coordinating frontend and backend integration, understanding real-time communication with Socket.IO, and ensuring that authentication and messaging worked together correctly.",
+  improvements: "Potential improvements include group chat rooms, message read receipts, end-to-end encryption, and push notifications for offline users."
+},
+
+
+   {
+    slug: "fixitnow",
+    number: "02",
+    title: "FixItNow",
+    desc: "Full-stack service management application with authentication, role-based dashboards, and service management features.",
+    img: "https://i.ibb.co.com/39yKWyZ5/Screenshot-128.png",
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "Express.js",
+      "PostgreSQL",
+      "Prisma",
+      "JWT",
+    ],
+    live: "https://fixitnow-frontend-n26j.onrender.com/",
+     frontendGithub:
+    "https://github.com/chinaakther05/fixitnow-frontend",
+
+  backendGithub:
+    "https://github.com/chinaakther05/fixitnow-backend",
+
+    accent: "#60a5fa",
+    fullDescription:
+      "FixItNow is a full-stack service management application built with Next.js, TypeScript, Node.js, Express.js, PostgreSQL, and Prisma. It includes authentication and role-based functionality for different users.",
+    challenges:
+      "Integrating the frontend with the backend API, handling authentication, and organizing role-based access.",
+    improvements:
+      "Future improvements may include additional service management features, improved error handling, and online payment integration.",
+  },
+  
+  
+  { slug: "smart-home", number: "03", title: "Smart Home", desc: "Modern smart home dashboard with responsive design, built using react and Tailwind CSS.", img: "https://i.ibb.co/yBWMJCPV/91266ec3-3e8c-4b6e-b752-b90d4d0b6c87.jpg", tech: ["React", "Tailwind CSS"], live: "https://smart-home-37fee.web.app/",
+    
+  
+     frontendGithub:
+    "https://github.com/chinaakther05/smart-home-client",
+
+  backendGithub:
+    "https://github.com/chinaakther05/smart-home-server",
+    accent: "#34d399", fullDescription: "A smart-home control dashboard concept UI, built with Next.js and styled entirely with Tailwind CSS. It presents device states (lights, temperature, security) in a clean, responsive card-based layout.", challenges: "Designing a dashboard that stays readable and usable on small screens — while still showing several live-looking device widgets at once — required careful use of Tailwind's responsive grid utilities.", improvements: "Planning to connect it to a real device API (or a mock WebSocket server) for live state updates, add user authentication, and support custom device grouping/rooms." },
   
 ];
 

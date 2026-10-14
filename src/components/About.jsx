@@ -399,7 +399,7 @@ const About = () => {
 
                 {[
                   { label:"📍 Location",    value:"Bangladesh",        color:"#f472b6" },
-                  { label:"💼 Experience",  value:"1+ Years",            color:"#60a5fa" },
+                 
                   { label:"🌐 Languages",   value:"Bangla, English",     color:"#34d399" },
                   { label:"⚡ Availability", value:"Open to work",       color:"#fbbf24" },
                 ].map((item, i) => (

@@ -14,7 +14,7 @@ import ProjectDetails from "./components/ProjectDetails"; // ১. ডিটে�
 function App() {
   return (
     <Routes>
-      {/* ২. মূল হোম পেজের রাউট */}
+    
       <Route
         path="/"
         element={
@@ -22,17 +22,16 @@ function App() {
             <Navbar />
             <Hero />
             <About />
-            <Skills />
             <Projects />
-            <Education />
-           
-            <Contact />
+            <Skills />
+           <Education />
+           <Contact />
             <Footer />
           </ScrollProvider>
         }
       />
 
-      {/* ৩. ভিউ ডিটেইলস পেজের রাউট */}
+      
       <Route path="/projects/:slug" element={<ProjectDetails />} />
     </Routes>
   );

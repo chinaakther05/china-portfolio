@@ -30,7 +30,7 @@ const HireModal = ({ onClose }) => {
       icon: "📄",
       label: "Download Resume",
       detail: "PDF Resume",
-      href: "/Resume.pdf",
+      href: "/China_Akther_Full_Stack_Developer_Resume.pdf",
       download: true,
       color: "#A78BFA",
     },

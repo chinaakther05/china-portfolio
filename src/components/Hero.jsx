@@ -570,7 +570,7 @@ const Hero = () => {
               marginBottom: "2rem",
             }}
           >
-            <a href="/Resume.pdf" download className="btn-primary">
+            <a href="/China_Akther_Full_Stack_Developer_Resume.pdf" download className="btn-primary">
               <svg
                 width="15"
                 height="15"
